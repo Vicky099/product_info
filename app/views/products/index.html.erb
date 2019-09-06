@@ -1,10 +1,7 @@
 <h2>Product listing</h2>
 <%= link_to "New Product", new_product_path, class: 'btn btn-success' %>
-<p>
-  <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-    Filters
-  </a>
-</p>
+<%= link_to "Export products as spreadsheet", products_path(download: true, format: "xlsx"), class: "btn btn-danger" %>
+<a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Filters</a>
 <div class="collapse" id="collapseExample">
   	<div class="card card-body">
     	<%= form_tag products_path, :method => 'get', class: "form-inline", remote: true do %>
@@ -12,7 +9,7 @@
 			Brand : <%= text_field_tag :brand, params[:brand], class: "form-control mb-2 mr-sm-2"%>
 			Model : <%= text_field_tag :model, params[:model], class: "form-control mb-2 mr-sm-2"%>
 			Ram : <%= text_field_tag :ram, params[:ram], class: "form-control mb-2 mr-sm-2"%>
-			External : <%= text_field_tag :ext_storage, params[:ext_storage], class: "form-control mb-2 mr-sm-2"%>
+			Storage: <%= text_field_tag :ext_storage, params[:ext_storage], class: "form-control mb-2 mr-sm-2"%>
 			<%= submit_tag "Search", class: 'btn btn-primary mb-2' %>
 		<% end %>
   	</div>

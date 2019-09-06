@@ -5,3 +5,18 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+5000.times do
+	type = ['Mobile', 'Tv'].sample
+	name = Faker::Coffee.blend_name
+	model = ['Samsung', 'MOTO', 'iPhone', 'Redmi'].sample
+	brand = ['SX1', 'AB', 'CD', 'EF', 'GH'].sample
+	ram = rand(0..4)
+	ext_storage = rand(0..4)
+	color = ['red', 'grey', 'black', 'gold'].sample
+	user_id = 1
+	year = [1992,1993,1994, 1995, 1997, 2003, 2006, 2018, 2019, 2016].sample
+
+	product = Product.create(type: type, name: name, model: model, brand: brand, ram: ram, ext_storage: ext_storage, color: color, user_id: user_id, year: year)
+	p "<<< Record : #{product.id}"
+end
