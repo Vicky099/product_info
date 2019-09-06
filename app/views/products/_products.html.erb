@@ -1,0 +1,23 @@
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th>Type</th>
+			<th>Name</th>
+			<th>Brand</th>
+			<th>Color</th>
+			<th>Created at</th>
+			<th>Action</th>
+		</tr>
+	</thead>
+	<% products.each do |product| %>
+		<tr>
+			<td><%= product.type %></td>
+			<td><%= product.name %></td>
+			<td><%= product.brand %></td>
+			<td><%= product.color %></td>
+			<td><%= product.created_at %></td>
+			<td><%= link_to "view", product_path(product), class: 'btn btn-sm btn-block btn-warning'%></td>
+		</tr>
+	<% end %>
+</table>
+<%= will_paginate products %>

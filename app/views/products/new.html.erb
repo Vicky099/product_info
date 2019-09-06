@@ -1,0 +1,71 @@
+<h1>New Product Information</h1>
+<% if @product.errors.any? %>
+	<div id="error_explanation">
+		<h2><%= pluralize(@product.errors.count, "error") %> prohibited this vehicle from being saved:</h2>
+		<ul>
+			<% @product.errors.full_messages.each do |msg| %>
+				<li><%= msg %></li>
+			<% end %>
+		</ul>
+	</div>
+<% end %>
+<%= form_for @product, url: products_path, method: :post do |f| %>
+	<% disabled = false %>
+	<% if @product.type && @product.type.to_s != 'Product' %>
+		<%= hidden_field_tag :type, @product.type.to_s %>
+		<% disabled = true %>
+	<% end %>
+	<div class="form-row">
+		<div class="form-group col-md-12">
+			<%= f.label :type %>
+			<%= f.select :type, Product.childs.map {|r| [r.humanize, r.camelcase]}, {}, disabled: disabled, class: 'form-control' %>
+			<% if disabled %>
+				<%= f.hidden_field :type %>
+			<% end %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<%= f.label :name %>
+			<%= f.text_field :name, class: 'form-control' %>
+		</div>
+
+		<div class="form-group col-md-6">
+			<%= f.label :model %>
+			<%= f.text_field :model, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-6">
+			<%= f.label :brand %>
+			<%= f.text_field :brand, class: 'form-control' %>
+		</div>
+
+		<div class="form-group col-md-6">
+			<%= f.label :color %>
+			<%= f.text_field :color, class: 'form-control' %>
+		</div><br/>
+	</div>
+	<div class="form-row">
+		<div class="form-group col-md-4">
+			<%= f.label :year %>
+			<%= f.text_field :year, class: 'form-control' %>
+		</div>
+
+		<div class="form-group col-md-4">
+			<%= f.label :ram %>
+			<%= f.text_field :ram, class: 'form-control' %>
+		</div>
+
+		<div class="form-group col-md-4">
+			<%= f.label :ext_storage %>
+			<%= f.text_field :ext_storage, class: 'form-control' %>
+		</div>
+	</div>
+	<div class="form-row">
+		<div class="col-md-12">
+			<%= link_to "Back", products_path, class: 'btn btn btn-default' %>
+			<%= f.submit 'Save details', class: 'btn btn btn-primary' %>
+		</div>
+	</div>
+<% end %>

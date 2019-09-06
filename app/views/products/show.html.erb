@@ -1,0 +1,14 @@
+<div class="card">
+	<div class="card-body">
+		<h2 class="card-title">Product information</h2>
+		<p class="card-text"> Type : <%= @product.type %></p>
+		<p class="card-text"> Name : <%= @product.name %></p>
+		<p class="card-text"> Brand : <%= @product.brand %></p>
+		<p class="card-text"> color : <%= @product.color %></p>
+		<p class="card-text"> Year : <%= @product.year %></p>
+		<p class="card-text"> Ram : <%= @product.ram %></p>
+		<p class="card-text"> External Storage : <%= @product.ext_storage %></p>
+		<%= link_to "Back", products_path, class: 'btn btn-default card-link'%>
+	</div>
+</div>
+
