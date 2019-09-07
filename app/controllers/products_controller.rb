@@ -6,17 +6,12 @@ class ProductsController < ApplicationController
 	def index
 		if params[:search].present?
 			@products = type_class.where("user_id = ?", current_user.id).where("brand like (?) AND model like (?) AND ram like (?) AND ext_storage like (?)", "%#{params[:brand]}%", "%#{params[:model]}%", "%#{params[:ram]}%", "%#{params[:ext_storage]}%").order('id DESC').paginate(page: params[:page], per_page: 25)
-		elsif params[:download].present?
-			@products = type_class.where("user_id = ?", current_user.id)
 		else
 			@products = type_class.where(user_id: current_user.id).order('id DESC').paginate(page: params[:page], per_page: 25)
 		end
 		respond_to do |format|
 			format.html
 			format.js
-			format.xlsx {
-  				response.headers['Content-Disposition'] = 'attachment; filename="product_list.xlsx"'
-			}
 		end
 	end
 
@@ -37,6 +32,12 @@ class ProductsController < ApplicationController
 
 	def show
 		@product = current_user.products.find_by_id(params[:id])
+	end
+
+	def download
+		DownloadWorker.perform_async(current_user.id)
+		flash[:notice]= "Product list download will be in process. Please wait few second."
+		redirect_to products_path
 	end
 
 	private

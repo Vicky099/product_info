@@ -1,0 +1,19 @@
+---
+:verbose: false
+:pidfile: ./tmp/pids/sidekiq.pid
+:logfile: ./log/sidekiq.log
+development:
+  :concurrency: 20
+  :queues:
+    - [default, 1]
+    - [xlsx_download, 1]
+staging:
+  :concurrency: 5
+  :queues:
+    - [default, 1]
+    - [xlsx_download, 1]
+production:
+  :concurrency: 10
+  :queues:
+    - [default, 3]
+    - [xlsx_download, 1]

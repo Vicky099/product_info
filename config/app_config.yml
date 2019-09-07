@@ -1,0 +1,13 @@
+development:
+  app:
+    host: 'localhost:3000'
+  redis:
+    host: 127.0.0.1
+    port: 6379
+
+production:
+  app:
+    host: product-prod.herokuapp.com
+  redis:
+    host: 127.0.0.1
+    port: 6379
