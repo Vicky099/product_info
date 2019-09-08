@@ -1,6 +1,8 @@
 <h2>Product listing</h2>
 <%= link_to "New Product", new_product_path, class: 'btn btn-success' %>
-<%= link_to "Export products as spreadsheet", download_products_path, class: "btn btn-danger" %>
+<button id="export" class="btn btn-danger">Export products as spreadsheet</button>
+<div class="export-status text-success"></div>
+
 <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">Filters</a>
 <div class="collapse" id="collapseExample">
   	<div class="card card-body">

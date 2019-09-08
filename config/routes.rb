@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 	resources :products do
 		collection do
 			get :download
+			get :export
+			get :export_status
+			get :export_download
 		end
 	end
 end

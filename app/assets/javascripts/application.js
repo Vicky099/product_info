@@ -15,6 +15,7 @@
 //= require activestorage
 //= require turbolinks
 //= require twitter/bootstrap
+//= require products
 //= require_tree .
 
 $(function(){

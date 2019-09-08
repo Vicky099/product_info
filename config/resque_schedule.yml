@@ -1,0 +1,3 @@
+ClearOldUserExports:
+  cron: "0 */2 * * *"
+  description: "Clear old product export files"
